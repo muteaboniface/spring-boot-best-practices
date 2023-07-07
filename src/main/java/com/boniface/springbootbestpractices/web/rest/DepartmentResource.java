@@ -1,0 +1,4 @@
+package com.boniface.springbootbestpractices.web.rest;
+
+public class DepartmentResource {
+}

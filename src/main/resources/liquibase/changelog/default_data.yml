@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: defaultDataSet
+      author: Boniface
+      changes:
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: -100
+              - column:
+                  name: company_name
+                  value: Innocerne
+              - column:
+                  name: address
+                  value: Lucerne
+
+            dbms: 'h2, !postgresql, !mysql'
+            schemaName: public
+            tableName: COMPANIES
+        - insert:
+            columns:
+              - column:
+                  name: id
+                  value: -200
+              - column:
+                  name: company_name
+                  value: Trax
+              - column:
+                  name: address
+                  value: Incetrepa
+
+            dbms: 'h2, postgresql, !mysql'
+            schemaName: public
+            tableName: COMPANIES
+
+# If the default data ends up in prod, you can simply delete it
+# dbms: 'h2, !postgresql, !mysql' -> h2 used , mysql and postgresql not used

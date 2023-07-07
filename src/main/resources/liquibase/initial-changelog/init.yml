@@ -1,0 +1,293 @@
+databaseChangeLog:
+- changeSet:
+    id: 1686718542426-1
+    author: boniface (generated)
+    changes:
+    - createSequence:
+        sequenceName: COMPANIES_SEQ
+- changeSet:
+    id: 1686718542426-2
+    author: boniface (generated)
+    changes:
+    - createSequence:
+        sequenceName: HIBERNATE_SEQUENCE
+- changeSet:
+    id: 1686718542426-3
+    author: boniface (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: PK_COMPANIES
+            name: ID
+            type: INT
+        - column:
+            name: COMPANY_NAME
+            type: CHARACTER LARGE OBJECT
+        - column:
+            name: ADDRESS
+            type: CHARACTER LARGE OBJECT
+        - column:
+            name: TEST
+            type: VARCHAR(255)
+        - column:
+            name: TEST2
+            type: VARCHAR(255)
+        - column:
+            name: TEST3
+            type: VARCHAR(255)
+        tableName: COMPANIES
+- changeSet:
+    id: 1686718542426-4
+    author: boniface (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_9
+            name: ID
+            type: INT
+        - column:
+            name: NAME
+            type: VARCHAR(255)
+        - column:
+            name: COMPANY_ID
+            type: INT
+        tableName: DEPARTMENTS
+- changeSet:
+    id: 1686718542426-5
+    author: boniface (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_4
+            name: ID
+            type: INT
+        - column:
+            name: COMPANY
+            type: VARCHAR(255)
+        - column:
+            name: DATE_OF_BIRTH
+            type: date
+        - column:
+            name: DATE_OF_EMPLOYMENT
+            type: date
+        - column:
+            name: NAME
+            type: VARCHAR(255)
+        - column:
+            name: ROLE
+            type: VARCHAR(255)
+        - column:
+            name: SALARY
+            type: INT
+        - column:
+            name: DEPARTMENT_ID
+            type: INT
+        tableName: EMPLOYEES
+- changeSet:
+    id: 1686718542426-6
+    author: boniface (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            constraints:
+              nullable: false
+            name: EMPLOYEE_ID
+            type: INT
+        - column:
+            constraints:
+              nullable: false
+            name: EMPLOYEE_SUPERVISIONS_ID
+            type: INT
+        tableName: EMPLOYEES_EMPLOYEE_SUPERVISIONS
+- changeSet:
+    id: 1686718542426-7
+    author: boniface (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: CONSTRAINT_C
+            name: ID
+            type: INT
+        - column:
+            name: HOURS_SUPERVISED
+            type: INT
+        - column:
+            name: NATURE_OF_SUPERVISION
+            type: VARCHAR(255)
+        - column:
+            name: EMPLOYEE_ID
+            type: INT
+        - column:
+            name: SUPERVISOR_ID
+            type: INT
+        tableName: EMPLOYEE_SUPERVISION
+- changeSet:
+    id: 1686718542426-8
+    author: boniface (generated)
+    changes:
+    - addUniqueConstraint:
+        columnNames: EMPLOYEE_SUPERVISIONS_ID
+        constraintName: UK_R1REUIWJXF63YMPNNRB9JNXJ2
+        tableName: EMPLOYEES_EMPLOYEE_SUPERVISIONS
+- changeSet:
+    id: 1686718542426-9
+    author: boniface (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: EMPLOYEE_ID
+        indexName: FK4GKTI2JFT0L1JHP55W6WLFTQN_INDEX_7
+        tableName: EMPLOYEES_EMPLOYEE_SUPERVISIONS
+- changeSet:
+    id: 1686718542426-10
+    author: boniface (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: DEPARTMENT_ID
+        indexName: FKGY4QE3DNQRM3KTD76SXP7N4C2_INDEX_4
+        tableName: EMPLOYEES
+- changeSet:
+    id: 1686718542426-11
+    author: boniface (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: SUPERVISOR_ID
+        indexName: FKK5NNP4S0VUMVC3CA1M9I6MAH5_INDEX_C
+        tableName: EMPLOYEE_SUPERVISION
+- changeSet:
+    id: 1686718542426-12
+    author: boniface (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: COMPANY_ID
+        indexName: FKOQ64WRPWBVD4LQ19C3QYXYKL0_INDEX_9
+        tableName: DEPARTMENTS
+- changeSet:
+    id: 1686718542426-13
+    author: boniface (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: EMPLOYEE_ID
+        indexName: FKTOIROOYGPTHB03TO4IUV3KCWF_INDEX_C
+        tableName: EMPLOYEE_SUPERVISION
+- changeSet:
+    id: 1686718542426-14
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: EMPLOYEE_ID
+        baseTableName: EMPLOYEES_EMPLOYEE_SUPERVISIONS
+        constraintName: FK4GKTI2JFT0L1JHP55W6WLFTQN
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: EMPLOYEES
+        validate: true
+- changeSet:
+    id: 1686718542426-15
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: DEPARTMENT_ID
+        baseTableName: EMPLOYEES
+        constraintName: FKGY4QE3DNQRM3KTD76SXP7N4C2
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: DEPARTMENTS
+        validate: true
+- changeSet:
+    id: 1686718542426-16
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: EMPLOYEE_SUPERVISIONS_ID
+        baseTableName: EMPLOYEES_EMPLOYEE_SUPERVISIONS
+        constraintName: FKK5JTLQUH2OQBOUYUCY0CN1AVM
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: EMPLOYEE_SUPERVISION
+        validate: true
+- changeSet:
+    id: 1686718542426-17
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: SUPERVISOR_ID
+        baseTableName: EMPLOYEE_SUPERVISION
+        constraintName: FKK5NNP4S0VUMVC3CA1M9I6MAH5
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: EMPLOYEES
+        validate: true
+- changeSet:
+    id: 1686718542426-18
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: COMPANY_ID
+        baseTableName: DEPARTMENTS
+        constraintName: FKOQ64WRPWBVD4LQ19C3QYXYKL0
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: COMPANIES
+        validate: true
+- changeSet:
+    id: 1686718542426-19
+    author: boniface (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: EMPLOYEE_ID
+        baseTableName: EMPLOYEE_SUPERVISION
+        constraintName: FKTOIROOYGPTHB03TO4IUV3KCWF
+        deferrable: false
+        initiallyDeferred: false
+        onDelete: RESTRICT
+        onUpdate: RESTRICT
+        referencedColumnNames: ID
+        referencedTableName: EMPLOYEES
+        validate: true
+
+

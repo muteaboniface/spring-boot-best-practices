@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Boniface
+      changes:
+        - createTable:
+            tableName: COMPANIES
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: company_name
+                  type: text
+              - column:
+                  name: address
+                  type: text

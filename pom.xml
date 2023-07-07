@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.6</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.boniface</groupId>
+	<artifactId>spring-boot-best-practices</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>spring-boot-best-practices</name>
+	<description>Best Springboot Practices</description>
+	<properties>
+		<java.version>17</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.liquibase</groupId>
+			<artifactId>liquibase-core</artifactId>
+			<version>4.20.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.liquibase</groupId>
+				<artifactId>liquibase-maven-plugin</artifactId>
+
+				<configuration>
+					<changeLogFile>${project.basedir}/src/main/resources/liquibase/master.yml</changeLogFile>
+					<outputChangeLogFile>${project.basedir}/src/main/resources/liquibase/initial-changelog/init.yml</outputChangeLogFile>
+					<diffChangeLogFile>${project.basedir}/src/main/resources/liquibase/changelog/${maven.build.timestamp}_changelog.yml</diffChangeLogFile>
+					<driver>org.h2.Driver</driver>
+					<url>
+						jdbc:h2:file:/home/boniface/repos/spring-boot-best-practices/h2database
+					</url>
+					<defaultSchemaName />
+					<username>boniface</username>
+					<password>boniface</password>
+					<referenceUrl>hibernate:spring:com.boniface.springbootbestpractices.domain?dialect=dialect=org.hibernate.dialect.H2Dialect&amp;
+						hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;
+						hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
+					<verbose>true</verbose>
+					<logging>debug</logging>
+					<contexts>!test</contexts>
+				</configuration>
+
+				<dependencies>
+					<dependency>
+						<groupId>org.liquibase.ext</groupId>
+						<artifactId>liquibase-hibernate5</artifactId>
+						<version>4.20.0</version>
+					</dependency>
+
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
